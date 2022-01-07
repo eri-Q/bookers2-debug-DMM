@@ -8,13 +8,13 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   # foreign_key（FK）には、@user.xxxとした際に「@user.idがfollower_idなのかfollowed_idなのか」を指定します。
-  # has_many :relationships, foreign_key: :follower_id, dependent: :destroy
-  # has_many :followers, through: :relationships, source: :followed
+  has_many :relationships, foreign_key: :follower_id, dependent: :destroy
+  has_many :followers, through: :relationships, source: :followed
   # # @user.booksのように、@user.yyyで、
   # # そのユーザがフォローしている人orフォローされている人の一覧を出したい
-  # has_many :reverse_of_ralationships, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy
-  # has_many :followeds, through: :reverse_of_relationships, source: :follower
-  
+  has_many :reverse_of_ralationships, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy
+  has_many :followeds, through: :reverse_of_relationships, source: :follower
+
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
