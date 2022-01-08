@@ -9,13 +9,12 @@
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
-    <th>follows</th>
-    <th><%= user.followeds.count %></th>
-  </tr>
-  <tr>
-    <th>followers</th>
-    <th><%= user.followers.count %></th>
-  </tr>
+    <%= link_to follows_user_path(@user) do %>
+    <h6>フォロー<%= @following_users.count %></h6>
+    <% end %>&nbsp;&nbsp;
+    <%= link_to followers_user_path(@user) do %>
+    <h6>フォロワー<%= @follower_users.count %></h6>
+    <% end %>
 </table>
 
 <div class='row'>
