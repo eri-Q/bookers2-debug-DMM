@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @books = @user.books
     @book = Book.new
 
+    # @posts = @user.posts.page(params[:page]).reverse_order
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
+
   end
 
   def index
@@ -16,14 +20,23 @@ class UsersController < ApplicationController
     @book = Book.new
   end
 
-  def followers
+  # def followers
+  #   user = User.find(params[:id])
+  #   @users = user.followers
+  # end
+
+  # def followeds
+  #   user = User.find(params[:id])
+  #   @users = user.followeds
+  # end
+  def follows
     user = User.find(params[:id])
-    @users = user.followers
+    @users = user.following_user.page(params[:page]).per(3).reverse_order
   end
 
-  def followeds
+  def followers
     user = User.find(params[:id])
-    @users = user.followeds
+    @users = user.follower_user.page(params[:page]).per(3).reverse_order
   end
 
   def edit
