@@ -14,10 +14,13 @@ class UsersController < ApplicationController
   end
 
   def index
+    @user = User.find(params[:id])
     @users = User.all
     # @user = User.find(current_user.id)
     # @users = User.where.not(id: current_user.id)
     @book = Book.new
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
   end
 
   # def followers
