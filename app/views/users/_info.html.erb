@@ -9,12 +9,24 @@
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
-    <%= link_to follows_user_path(users) do %>
-    <h6>フォロー<%= following_users.count %></h6>
-    <% end %>&nbsp;&nbsp;
-    <%= link_to followers_user_path(users) do %>
-    <h6>フォロワー<%= follower_users.count %></h6>
-    <% end %>
+    <th>
+      follows
+      <td>
+        <%= link_to follows_user_path(user) do %>
+        <%= @following_users.count %></h6>
+        <% end %>
+      </td>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      followers
+      <td>
+        <%= link_to followers_user_path(user) do %>
+        <%= @follower_users.count %>
+        <% end %>
+      </td>
+    </th>
   </tr>
 </table>
 

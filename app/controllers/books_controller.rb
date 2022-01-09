@@ -6,12 +6,19 @@ class BooksController < ApplicationController
     @book_new = Book.new
     # @user = @book.user
     @book_comment = BookComment.new
+    @user = User.find(current_user.id)
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
+
 
   end
 
   def index
     @books = Book.all
     @book = Book.new
+    @user = User.find(current_user.id)
+    @following_users = @user.following_user
+    @follower_users = @user.follower_user
   end
 
   def create
