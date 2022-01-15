@@ -15,7 +15,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
-    @book = Book.new
+    @book = Book.find(params[:id])
     @user = User.find(current_user.id)
     @following_users = @user.following_user
     @follower_users = @user.follower_user
